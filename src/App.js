@@ -1,16 +1,23 @@
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import SearchParams from "./components/SearchParams";
 import { StrictMode } from "react";
+import Details from "./Details";
 
 const App = () => {
   return (
     <StrictMode>
-      <div>
-        <h1>Adopt Me</h1>
-        <SearchParams />
-      </div>
+      <BrowserRouter>
+        <header>
+          <Link to="/">Adopt Me</Link>
+        </header>
+        <Routes>
+          <Route path="/" element={<SearchParams />} />
+          <Route path="/details/:id" element={<Details />} />
+        </Routes>
+      </BrowserRouter>
     </StrictMode>
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+render(<App />, document.getElementById("root"));
